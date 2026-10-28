@@ -20,4 +20,5 @@ public class Recipe {
     public String getSteps() { return steps; }
     public List<RecipeIngredient> getIngredients() { return ingredients; }
     public void setIngredients(List<RecipeIngredient> ingredients) { this.ingredients = ingredients; }
+    public void addIngredient(RecipeIngredient ingredient) { ingredients.add(ingredient); }
 }

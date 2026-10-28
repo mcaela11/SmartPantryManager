@@ -1,4 +1,100 @@
 package com.example.smartpantrymanager;
 
+/** Pre-loads the recipe collection the first time the app runs. */
 public class RecipeSeeder {
+
+    public static void seedIfEmpty(DatabaseHelper db) {
+        if (db.getRecipeCount() > 0) return; // already seeded
+
+        add(db, "Peanut Butter Sandwich",
+                "1. Spread peanut butter on the bread.\n2. Put the slices together and enjoy.",
+                i("bread", 2, "slices"), i("peanut butter", 30, "g"));
+
+        add(db, "Two-Minute Noodles",
+                "1. Boil water and add the noodles.\n2. Cook for 2 minutes.\n3. Add the seasoning and stir.",
+                i("instant noodles", 1, "pack"), i("water", 500, "ml"));
+
+        add(db, "Toast with Butter",
+                "1. Toast the bread.\n2. Spread butter on the toast.",
+                i("bread", 2, "slices"), i("butter", 10, "g"));
+
+        add(db, "Cereal and Milk",
+                "1. Pour cereal into a bowl.\n2. Add milk and eat.",
+                i("cereal", 50, "g"), i("milk", 200, "ml"));
+
+        add(db, "Jam Sandwich",
+                "1. Spread jam on the bread.\n2. Put the slices together.",
+                i("bread", 2, "slices"), i("jam", 30, "g"));
+
+        add(db, "Instant Soup",
+                "1. Empty the soup powder into a mug.\n2. Add boiling water and stir well.",
+                i("instant soup powder", 1, "packet"), i("water", 250, "ml"));
+
+        add(db, "Cheese Sandwich",
+                "1. Place cheese between two slices of bread.\n2. Cut the sandwich in half.",
+                i("bread", 2, "slices"), i("cheese", 40, "g"));
+
+        add(db, "Banana and Peanut Butter",
+                "1. Peel and slice the banana.\n2. Spread peanut butter on the slices or eat it on the side.",
+                i("banana", 1, "pcs"), i("peanut butter", 20, "g"));
+
+        add(db, "Scrambled Eggs",
+                "1. Crack the eggs into a bowl and whisk.\n2. Cook in a pan until done.",
+                i("egg", 2, "pcs"), i("butter", 5, "g"));
+
+        add(db, "Boiled Eggs on Toast",
+                "1. Boil the eggs for about 8-10 minutes.\n2. Toast the bread.\n3. Peel the eggs and serve with toast.",
+                i("egg", 2, "pcs"), i("bread", 2, "slices"));
+
+        add(db, "Instant Oats",
+                "1. Add oats and milk to a bowl.\n2. Microwave for 1-2 minutes, stirring halfway through.",
+                i("oats", 50, "g"), i("milk", 200, "ml"));
+
+        add(db, "Milo or Hot Chocolate",
+                "1. Add the chocolate powder to a mug.\n2. Pour in warm milk and stir.",
+                i("chocolate powder", 20, "g"), i("milk", 250, "ml"));
+
+        add(db, "Tuna Sandwich",
+                "1. Drain the tuna.\n2. Mix with mayonnaise.\n3. Spread onto bread and serve.",
+                i("bread", 2, "slices"), i("tuna", 80, "g"), i("mayonnaise", 15, "g"));
+
+        add(db, "Cheese Toast",
+                "1. Place cheese on the bread.\n2. Grill until the cheese melts.",
+                i("bread", 2, "slices"), i("cheese", 40, "g"));
+
+        add(db, "Instant Noodles with Egg",
+                "1. Cook the noodles according to the packet instructions.\n2. Add an egg and cook until fully set.\n3. Stir in the seasoning.",
+                i("instant noodles", 1, "pack"), i("egg", 1, "pcs"), i("water", 500, "ml"));
+
+        add(db, "Mayo Sandwich",
+                "1. Spread mayonnaise on the bread.\n2. Add your preferred filling if available.\n3. Close the sandwich.",
+                i("bread", 2, "slices"), i("mayonnaise", 20, "g"));
+
+        add(db, "Butter Pasta",
+                "1. Boil the pasta until soft.\n2. Drain the water.\n3. Mix in the butter.",
+                i("pasta", 100, "g"), i("butter", 15, "g"));
+
+        add(db, "Rice with Fried Egg",
+                "1. Cook the rice.\n2. Fry the egg in a pan.\n3. Serve the egg on top of the rice.",
+                i("rice", 100, "g"), i("egg", 1, "pcs"), i("oil", 5, "ml"));
+
+        add(db, "Banana Sandwich",
+                "1. Peel and slice the banana.\n2. Place the slices on the bread.\n3. Close the sandwich.",
+                i("bread", 2, "slices"), i("banana", 1, "pcs"));
+
+        add(db, "Tomato on Toast",
+                "1. Toast the bread.\n2. Slice the tomato.\n3. Place the tomato on the toast and add salt if desired.",
+                i("bread", 2, "slices"), i("tomato", 1, "pcs"), i("salt", 1, "g"));
+    }
+
+    // Shortcut for building an ingredient (ids are assigned by the database)
+    private static RecipeIngredient i(String name, double qty, String unit) {
+        return new RecipeIngredient(0, 0, name, qty, unit);
+    }
+
+    private static void add(DatabaseHelper db, String name, String steps, RecipeIngredient... ingredients) {
+        Recipe r = new Recipe(0, name, steps);
+        for (RecipeIngredient ing : ingredients) r.addIngredient(ing);
+        db.addRecipe(r);
+    }
 }

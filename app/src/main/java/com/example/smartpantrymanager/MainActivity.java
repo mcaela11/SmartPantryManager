@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dbHelper = new DatabaseHelper(this);
+        RecipeSeeder.seedIfEmpty(dbHelper); // pre-loads recipes on first run only
         textEmpty = findViewById(R.id.textEmpty);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerPantry);
