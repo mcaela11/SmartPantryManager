@@ -29,10 +29,9 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_suggested_recipes);
 
-        int pad = (int) (16 * getResources().getDisplayMetrics().density);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.suggestedRoot), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left + pad, bars.top + pad, bars.right + pad, bars.bottom + pad);
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
             return insets;
         });
 
@@ -49,6 +48,9 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
             startActivity(intent);
         });
         recyclerView.setAdapter(adapter);
+
+        // Bottom navigation: highlights the Recipes tab
+        BottomNavHelper.setup(this, findViewById(R.id.bottomNav), R.id.nav_suggested);
     }
 
     @Override
