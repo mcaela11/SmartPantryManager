@@ -49,5 +49,4 @@ Add egg (3 pcs), bread (2 pcs) and butter (10 g) to the pantry.
 Open the Recipes tab. Recipes whose ingredients are all covered appear.
 Delete the butter. Recipes that need butter disappear.
 
-A unit test for the matching logic is in app/src/test (RecipeMatcherTest).
 
