@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, AddEditItemActivity.class)));
+        findViewById(R.id.buttonSuggested).setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, SuggestedRecipesActivity.class)));
     }
 
     @Override
