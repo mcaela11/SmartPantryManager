@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-/** Shared bottom navigation: each tab opens its screen using an Intent. */
+// Shared bottom navigation: each tab opens its screen using an Intent. //
 public class BottomNavHelper {
 
     public static void setup(Activity activity, BottomNavigationView nav, int selectedId) {

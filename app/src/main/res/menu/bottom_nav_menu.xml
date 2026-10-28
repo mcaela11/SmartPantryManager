@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This file defines the items that show up in the bottom navigation bar -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- First tab: the Pantry screen where you see your ingredients -->
     <item
         android:id="@+id/nav_pantry"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="Pantry" />
+
+    <!-- Second tab: the suggested Recipes screen -->
     <item
         android:id="@+id/nav_suggested"
         android:icon="@android:drawable/ic_menu_view"
         android:title="Recipes" />
+
+    <!-- Third tab: the Settings screen -->
     <item
         android:id="@+id/nav_settings"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="Settings" />
+
 </menu>

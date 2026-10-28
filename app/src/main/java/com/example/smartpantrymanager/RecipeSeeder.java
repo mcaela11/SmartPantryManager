@@ -1,6 +1,6 @@
 package com.example.smartpantrymanager;
 
-/** Pre-loads the recipe collection the first time the app runs. */
+// Pre-loads the recipe collection the first time the app runs. //
 public class RecipeSeeder {
 
     public static void seedIfEmpty(DatabaseHelper db) {

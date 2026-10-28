@@ -16,6 +16,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
+/** Add/Edit screen: creates, updates or deletes a pantry item, with input validation. */
 public class AddEditItemActivity extends AppCompatActivity {
 
     // Key used to pass the item's id from the list screen via an Intent
@@ -75,7 +80,8 @@ public class AddEditItemActivity extends AppCompatActivity {
             return;
         }
         editName.setText(item.getName());
-        editQuantity.setText(String.valueOf(item.getQuantity()));
+        double q = item.getQuantity();
+        editQuantity.setText(q == Math.rint(q) ? String.valueOf((long) q) : String.valueOf(q));
         if (item.getExpiryDate() != null) {
             editExpiry.setText(item.getExpiryDate());
         }
@@ -125,8 +131,8 @@ public class AddEditItemActivity extends AppCompatActivity {
             return;
         }
 
-        if (!expiry.isEmpty() && !expiry.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            editExpiry.setError("Use the format yyyy-MM-dd");
+        if (!expiry.isEmpty() && (!expiry.matches("\\d{4}-\\d{2}-\\d{2}") || !isValidDate(expiry))) {
+            editExpiry.setError("Enter a real date in the format yyyy-MM-dd");
             return;
         }
 
@@ -140,5 +146,17 @@ public class AddEditItemActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingredient updated", Toast.LENGTH_SHORT).show();
         }
         finish();
+    }
+
+    // Checks the date really exists (rejects 2026-99-99 or 2026-02-30)
+    private boolean isValidDate(String text) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            format.setLenient(false);
+            format.parse(text);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 }

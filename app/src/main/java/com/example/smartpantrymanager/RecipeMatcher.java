@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/** Core business logic: a recipe is suggested only if EVERY ingredient is in stock. */
+// a recipe is suggested only if EVERY ingredient is in stock. //
 public class RecipeMatcher {
 
     private static final double EPSILON = 0.0001; // avoids floating-point rounding problems

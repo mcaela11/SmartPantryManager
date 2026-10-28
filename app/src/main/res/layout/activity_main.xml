@@ -5,7 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!-- This is the main container for the whole screen, ConstraintLayout so we can anchor stuff
+    to each other -->
 
+    <!-- The list that shows all the pantry ingredients (scrollable) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPantry"
         android:layout_width="0dp"
@@ -14,7 +17,10 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+    <!-- 0dp width/height = "match constraints", so it fills the space from the top down to the
+     bottom nav -->
 
+    <!-- Shown only when there are no ingredients yet (we toggle visibility in code) -->
     <TextView
         android:id="@+id/textEmpty"
         android:layout_width="wrap_content"
@@ -25,7 +31,9 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Centered between the top and the bottom nav, starts hidden (gone) -->
 
+    <!-- The round "+" button for adding a new ingredient, sits above the bottom nav on the right -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
@@ -36,6 +44,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- The bottom navigation bar for switching between screens/tabs -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
@@ -45,4 +54,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Spans the full width at the very bottom of the screen -->
 </androidx.constraintlayout.widget.ConstraintLayout>
